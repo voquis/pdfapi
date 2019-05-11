@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5e4b70bc0029a38ba5f4ac6a22250155",
+    "content-hash": "4de9eae60fe674b4e84aba76606940d5",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -2832,16 +2832,16 @@
         },
         {
             "name": "voquis/pdflib",
-            "version": "0.0.2",
+            "version": "0.0.3-alpha",
             "source": {
                 "type": "git",
                 "url": "https://github.com/voquis/pdflib.git",
-                "reference": "93866078309c48f4b6af453e23a9402d669e0f14"
+                "reference": "cf60144c2ed9b891546231c68422629ad82961aa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/voquis/pdflib/zipball/93866078309c48f4b6af453e23a9402d669e0f14",
-                "reference": "93866078309c48f4b6af453e23a9402d669e0f14",
+                "url": "https://api.github.com/repos/voquis/pdflib/zipball/cf60144c2ed9b891546231c68422629ad82961aa",
+                "reference": "cf60144c2ed9b891546231c68422629ad82961aa",
                 "shasum": ""
             },
             "require": {
@@ -2850,9 +2850,12 @@
                 "tecnickcom/tcpdf": "6.2.26"
             },
             "require-dev": {
+                "ext-xsl": "*",
                 "phpstan/phpstan": "^0.11.5",
                 "phpunit/phpunit": "^8.1",
-                "squizlabs/php_codesniffer": "^3.4"
+                "smalot/pdfparser": "^0.14.0",
+                "squizlabs/php_codesniffer": "^3.4",
+                "theseer/phpdox": "^0.12.0"
             },
             "type": "library",
             "autoload": {
@@ -2866,7 +2869,7 @@
             ],
             "description": "A PDF library for generating business documents",
             "homepage": "https://github.com/voquis/pdflib",
-            "time": "2019-05-05T15:35:36+00:00"
+            "time": "2019-05-11T08:29:53+00:00"
         }
     ],
     "packages-dev": [
@@ -5396,5 +5399,7 @@
     "platform": {
         "php": "^7.2"
     },
-    "platform-dev": []
+    "platform-dev": {
+        "ext-xsl": "*"
+    }
 }
