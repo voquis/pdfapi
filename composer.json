@@ -7,7 +7,7 @@
         "php": "^7.2",
         "laravel/lumen-framework": "5.8.*",
         "vlucas/phpdotenv": "^3.3",
-        "voquis/pdflib": "^0.0.2"
+        "voquis/pdflib": "0.0.3-alpha"
     },
     "require-dev": {
         "ext-xsl": "*",
