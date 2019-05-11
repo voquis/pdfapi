@@ -6,7 +6,7 @@ use Laravel\Lumen\Testing\DatabaseMigrations;
 use Laravel\Lumen\Testing\DatabaseTransactions;
 use Smalot\PdfParser\Parser;
 
-class InvoiceTest extends TestCase
+class PurchaseOrderTest extends TestCase
 {
     /**
      * Test GET where POST is only allowed, expect 405 status code
@@ -15,7 +15,7 @@ class InvoiceTest extends TestCase
      */
     public function testMethodNotAllowed(): void
     {
-        $this->get('/invoice');
+        $this->get('/purchaseOrder');
 
         $this->assertEquals(
             405,
@@ -30,7 +30,7 @@ class InvoiceTest extends TestCase
      */
     public function testBadRequest(): void
     {
-        $this->post('/invoice');
+        $this->post('/purchaseOrder');
 
         $this->assertEquals(
             400,
@@ -60,11 +60,10 @@ class InvoiceTest extends TestCase
                     'postcode' => 'PO57 C0D',
                 ]
             ],
-            'invoice' => [
-                'ref' => 'INV-1234',
-                'summary' => 'Invoice for some service',
-                'notes' => 'Invoice notes',
-                'instructions' => 'Invoice payment instructions',
+            'purchaseOrder' => [
+                'ref' => 'PO-1234',
+                'summary' => 'Purchase Order for some service',
+                'notes' => 'Purchase notes',
                 'symbol' => '&pound;',
                 'net' => 100.0,
                 'tax' => 20.0,
@@ -97,7 +96,7 @@ class InvoiceTest extends TestCase
             'logoHeight' => 40,
             'emailTelUnderLogo' => true,
         ];
-        $this->json('POST', '/invoice', $data);
+        $this->json('POST', '/purchaseOrder', $data);
         // Assert HTTP status code
         $this->assertEquals(201, $this->response->getStatusCode());
         // Verify PDF contents
@@ -107,6 +106,6 @@ class InvoiceTest extends TestCase
         $this->assertStringContainsString($data['company']['name'], $pdfText);
         $this->assertStringContainsString($data['company']['telephone'], $pdfText);
         $this->assertStringContainsString(implode("\n", $data['company']['address']), $pdfText);
-        $this->assertStringContainsString($data['invoice']['notes'], $pdfText);
+        $this->assertStringContainsString($data['purchaseOrder']['notes'], $pdfText);
     }
 }

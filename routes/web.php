@@ -15,4 +15,8 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
+// POST /invoice
 $router->post('invoice', 'InvoiceController@pdf');
+
+// POST /purchaseOrder
+$router->post('purchaseOrder', 'PurchaseOrderController@pdf');
