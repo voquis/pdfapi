@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/voquis/pdfapi.svg?branch=master)](https://travis-ci.org/voquis/pdfapi)
+[![Build Status](https://travis-ci.org/voquis/pdfapi.svg?branch=master)](https://travis-ci.org/voquis/pdfapi) [![codecov](https://codecov.io/gh/voquis/pdfapi/branch/master/graph/badge.svg)](https://codecov.io/gh/voquis/pdfapi)
 
 # Introduction
 A PHP API for generating business documents in PDF format.
