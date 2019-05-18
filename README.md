@@ -3,6 +3,19 @@
 # Introduction
 A PHP API for generating business documents in PDF format.
 
+# Usage
+Once the API is running using one of the methods below, the following endpoints are available:
+- POST /invoice
+- POST /purchaseOrder
+Body data should be posted as ```application/json``` content type.
+
+## Docker
+To run the API as a Docker container, a single http endpoint needs to be exposed, for example to ```3002``` on the host machine:
+```
+docker run -p 3002:80 voquis:/pdfapi
+```
+To run in detached mode, add ```-d``` before the image name.
+
 # Development
 The API uses the [Laravel Lumen](https://lumen.laravel.com/docs) framework and makes use of [voquis/pdflib](https://github.com/voquis/pdflib), a library built on [TCPDF](https://tcpdf.org).
 
@@ -20,15 +33,14 @@ docker run \
 php:7.3.5-apache
 ```
 If using docker for windows, change paths to ```//c/path/to/source://pdfapi```.
-
-Then connect to the running container:
+Then connect to the running container in interactive mode (```-i```) and to the TTY (-t).  Note that if using git for Windows, the prefix ```winpty``` may be required.
 ```
 docker exec -it pdfapi_dev bash
 ```
 To disconnect and leave a container running use ```Ctrl+P``` then ```Ctrl+Q```.
 
 ### Install and enable dependencies
-Note that the base Docker PHP image has a utility ```docker-php-ext-install``` for installing and enabling PHP extensions.
+Note that the base Docker PHP image has a utility ```docker-php-ext-install``` for installing and enabling PHP extensions.  The ```gd``` extension is used for parsing image logos in the header.  The ```xsl``` extension is used during tests and is not required for production (see ```Dockerfile``` for production optimisation).
 ```
 apt-get update
 apt-get install -y libpng-dev vim git unzip libxslt1-dev
@@ -45,7 +57,7 @@ xdebug.remote_autostart=1" > /usr/local/etc/php/conf.d/xdebug.ini
 ```
 
 ### Increase memory limit
-Note that this creates a new ```ini``` config file
+Static code analysis ([phpstan](https://github.com/phpstan/phpstan)) may hit default PHP memory limits, to increase this, run the following. Note that this creates a new ```ini``` config file.
 ```
 echo "memory_limit=512M" > /usr/local/etc/php/conf.d/memory.ini
 ```
@@ -73,3 +85,6 @@ sed -ri -e 's!/var/www/!/pdfapi!g' /etc/apache2/apache2.conf /etc/apache2/conf-a
 service apache2 restart
 ```
 Note that restarting apache2 will terminate the container so will need to run ```docker container start pdfapi_dev``` and then reconnect.
+
+# Contributing
+Contributions are welcome in the form of issue reporting and pull-requests, please fork the repository with any proposed changes.  Please ensure 100% unit test code coverage is maintained and that tests are run locally with ```composer test``` before pushing your changes.
