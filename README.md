@@ -7,6 +7,7 @@ A PHP API for generating business documents in PDF format.
 Once the API is running using one of the methods below, the following endpoints are available:
 - POST /invoice
 - POST /purchaseOrder
+
 Body data should be posted as ```application/json``` content type.
 
 ## Docker
@@ -48,7 +49,7 @@ docker-php-ext-install gd xsl
 ```
 
 ### Install tools
-Install Xdebug and add config file
+Install Xdebug and add config file.  The xdebug extension is required for producing unit test coverage reports. The ```xdebug.remote_enable``` and ```xdebug.remote_autostart``` options are only required if remote debugging will be used (port ```9000```).
 ```
 pecl install xdebug
 echo "zend_extension=xdebug.so

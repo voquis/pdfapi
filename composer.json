@@ -38,7 +38,8 @@
             "@phpstan"
         ],
         "phpcs": "./vendor/bin/phpcs app bootstrap resources routes tests --standard=PSR2",
-        "phpunit": "./vendor/bin/phpunit tests --coverage-html build/test-coverage",
+        "phpunit": "./vendor/bin/phpunit tests --coverage-clover=coverage.xml",
+        "phpunit-html": "./vendor/bin/phpunit tests --coverage-html build/test-coverage",
         "phpstan":"./vendor/bin/phpstan analyse --level=7 app bootstrap resources tests"
     },
     "config": {
