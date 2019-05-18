@@ -17,7 +17,7 @@ docker run \
 -p 3000:80 \
 -p 3001:9000 \
 -w /pdfapi \
-php:7.3.4-apache
+php:7.3.5-apache
 ```
 If using docker for windows, change paths to ```//c/path/to/source://pdfapi```.
 
