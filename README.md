@@ -35,6 +35,7 @@ php:7.3.5-apache
 ```
 If using docker for windows, change paths to ```//c/path/to/source://pdfapi```.
 Then connect to the running container in interactive mode (```-i```) and to the TTY (-t).  Note that if using git for Windows, the prefix ```winpty``` may be required.
+If using CentOS/RHEL or other SELinux enabled distros, use ```:Z``` (exclusive access to this container) or ```:z``` (shared with other containers) at the end of the volume mounts to set appropriate permissions, i.e. ```-v /local/path/to/source:/pdfapi:Z```. See this [StackOverflow question/answer](https://stackoverflow.com/questions/35218194/what-is-z-flag-in-docker-containers-volumes-from-option) for further details.
 ```
 docker exec -it pdfapi_dev bash
 ```
