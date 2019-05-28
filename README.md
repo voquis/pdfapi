@@ -13,7 +13,7 @@ Body data should be posted as ```application/json``` content type.
 ## Docker
 To run the API as a Docker container, a single http endpoint needs to be exposed, for example to ```3002``` on the host machine:
 ```
-docker run -p 3002:80 voquis:/pdfapi
+docker run -p 3002:80 voquis:pdfapi
 ```
 To run in detached mode, add ```-d``` before the image name.
 
@@ -27,7 +27,7 @@ docker run \
 -d \
 --name pdfapi_dev \
 --hostname pdfapi_dev \
--v /local/path/to/source:/pdfapi \
+--mount /local/path/to/source:/pdfapi \
 -p 3000:80 \
 -p 3001:9000 \
 -w /pdfapi \
