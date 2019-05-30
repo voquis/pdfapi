@@ -27,13 +27,13 @@ docker run \
 -d \
 --name pdfapi_dev \
 --hostname pdfapi_dev \
---mount /local/path/to/source:/pdfapi \
+-v /local/path/to/source:/pdfapi \
 -p 3000:80 \
 -p 3001:9000 \
 -w /pdfapi \
 php:7.3.5-apache
 ```
-If using docker for windows, change paths to ```//c/path/to/source://pdfapi```.
+To use the current directory instead of specifying the full local path, use ```-v `pwd`:/pdfapi ```.  If using docker for windows, change paths to ```//c/path/to/source://pdfapi```.
 Then connect to the running container in interactive mode (```-i```) and to the TTY (-t).  Note that if using git for Windows, the prefix ```winpty``` may be required.
 If using CentOS/RHEL or other SELinux enabled distros, use ```:Z``` (exclusive access to this container) or ```:z``` (shared with other containers) at the end of the volume mounts to set appropriate permissions, i.e. ```-v /local/path/to/source:/pdfapi:Z```. See this [StackOverflow question/answer](https://stackoverflow.com/questions/35218194/what-is-z-flag-in-docker-containers-volumes-from-option) for further details.
 ```
@@ -89,4 +89,4 @@ service apache2 restart
 Note that restarting apache2 will terminate the container so will need to run ```docker container start pdfapi_dev``` and then reconnect.
 
 # Contributing
-Contributions are welcome in the form of issue reporting and pull-requests, please fork the repository with any proposed changes.  Please ensure 100% unit test code coverage is maintained and that tests are run locally with ```composer test``` before pushing your changes.
+Contributions are welcome in the form of issue reporting and pull-requests, please fork the repository with any proposed changes.  Please ensure 100% unit test code coverage is maintained and that tests are run locally with ```composer test``` before pushing your changes.  To generate unit test coverage report, run ```composer phpunit-html```. These commands are defined in ```composer.json``` under ```scripts```.

@@ -77,7 +77,10 @@ class InvoiceController extends Controller
                     'gross' => $json['invoice']['gross'] ?? null,
                 ]
             ),
-            []
+            [
+                'logoHeight' => $json['logoHeight'] ?? null,
+                'emailTelUnderLogo' => $json['emailTelUnderLogo'] ?? null,
+            ]
         );
 
         $response = new Response(
