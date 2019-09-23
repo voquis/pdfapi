@@ -8,7 +8,74 @@ Once the API is running using one of the methods below, the following endpoints 
 - POST /invoice
 - POST /purchaseOrder
 
-Body data should be posted as ```application/json``` content type.
+## Sample invoice requests
+Body data should be posted as ```application/json``` raw content type.
+
+```json
+{
+  "logoHeight": 55,
+  "emailTelUnderLogo": true,
+  "company": {
+    "name": "Example Limited",
+    "number": "12345678",
+    "vatNumber": "GB12345678901",
+    "email": "hello@example.com",
+    "telephone": "01234 567 890",
+    "logoUrl": "https://example.com/logo.png",
+    "address": {
+      "line1": "123 House Street",
+      "line2": "Townville",
+      "city": "Citybourne",
+      "postcode": "PO57 C0D"
+    }
+  },
+  "invoice": {
+    "ref": "INV-123",
+    "summary": "For the provision of services.",
+    "notes": "",
+    "instructions": "Please make BACS direct credit payments to: Example Limited | Account Number: 00000000 | Sorting code: 00-00-00",
+    "symbol": "&pound;",
+    "net": 1234.56,
+    "tax": 100.00,
+    "gross": 1334.56,
+    "company": {
+      "name": "Customer Limited",
+      "address": {
+        "line1": "1a Flat Towers",
+        "line2": "Low High Street",
+        "city": "Uptown",
+        "postcode"     : "C0D P057"
+      }
+    },
+    "items": [
+      {
+        "quantity": 1,
+        "description": "Provision of services relating to particulars",
+        "unitPrice": 354.17,
+        "taxPercent": 20,
+        "net": 425
+      },
+      {
+        "quantity": 1,
+        "description": "Production of widgets conforming to specification J-21",
+        "unitPrice": 354.17,
+        "taxPercent": 20,
+        "net": 425
+      }
+    ],
+    "keyValuePairs": [
+      {
+        "key": "Tax Point",
+        "value": "2019-09-02"
+      },
+      {
+        "key": "Period",
+        "value": "2019-08-01 to 2019-08-31"
+      }
+    ]
+  }
+}
+```
 
 ## Docker
 To run the API as a Docker container, a single http endpoint needs to be exposed, for example to ```3002``` on the host machine:
